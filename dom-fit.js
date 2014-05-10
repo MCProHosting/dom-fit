@@ -1,9 +1,7 @@
-var domFit = function (_jquery, _fit) {
+var domFit = (function (jQuery, fit) {
     'use strict';
 
-    var jQuery  = _jquery || window.jQuery,
-        fit     = _fit || window.fit,
-        options = {};
+    var options = {};
 
     function boot () {
         $('[data-fit], .js-fit').each(function () {
@@ -66,9 +64,6 @@ var domFit = function (_jquery, _fit) {
         position(transform, element);
     }
 
-
-    jQuery(window).load(boot);
-
     return {
         'position'  : position,
         'vertical'  : vertical,
@@ -76,12 +71,5 @@ var domFit = function (_jquery, _fit) {
 
         'boot': boot,
     }
-};
 
-if (typeof window.define === "function" && window.define.amd) {
-    window.define('domFit', ['jquery', 'fit'], function($, fit) {
-        return window.domFit($, fit);
-    });
-} else {
-    window.domFit = window.domFit();
-}
+})(window.jQuery, window.fit);
