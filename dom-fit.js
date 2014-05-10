@@ -24,13 +24,17 @@ var domFit = (function (jQuery, fit) {
     }
 
     function correctScale (transform, element) {
+        if (transform.scale === false) {
+            return transform;
+        }
+        
         var opts = jQuery.extend(options, fit.defaults),
             dY   = (transform.height - transform.height / transform.scale),
             dX   = (transform.width - transform.width / transform.scale);
 
-        transform.ty = options.vAlign == fit.CENTER ? dY / 2 : options.vAlign == BOTTOM ? dY : 0;
-        transform.tx = options.hAlign == fit.CENTER ? dX / 2 : options.vAlign == RIGHT ? dX : 0;
-        transform.scale = 0;
+        transform.ty = opts.vAlign == fit.CENTER ? dY / 2 : opts.vAlign == BOTTOM ? dY : 0;
+        transform.tx = opts.hAlign == fit.CENTER ? dX / 2 : opts.vAlign == RIGHT ? dX : 0;
+        transform.scale = false;
 
         return transform;
     }
@@ -45,7 +49,7 @@ var domFit = (function (jQuery, fit) {
         if (style.position === 'static') {
             element.style.position = 'relative';
         }
-        
+
         element.style.left = left + transform.tx + 'px';
         element.style.top = top + transform.ty + 'px';
     }
@@ -53,7 +57,7 @@ var domFit = (function (jQuery, fit) {
     function vertical (transform, element) {
         transform = correctScale(transform);
         transform.tx = 0;
-        
+
         position(transform, element);
     }
 
