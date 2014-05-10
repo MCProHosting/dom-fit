@@ -1,0 +1,27 @@
+{
+  "name": "dom-fit",
+  "version": "0.0.0",
+  "homepage": "https://github.com/MCProHosting/dom-fit",
+  "authors": [
+    "Connor Peet <connor@connorpeet.com>"
+  ],
+  "description": "Fit things into other things with DOM bindings!",
+  "main": "dom-fit.js",
+  "keywords": [
+    "fit",
+    "jquery",
+    "dom"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "*",
+    "fit.js": "*"
+  }
+}
