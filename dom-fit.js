@@ -21,6 +21,26 @@ var domFit = (function (jQuery, fit) {
 
             fit(this, target, options, method);
         });
+
+
+        $('[data-fit-for]').each(function() {
+            var parts     = $(this).attr('data-fit-for').split(' in '),
+                $parent   = $(this).closest(parts[1])
+                $children = $parent.find(parts[0]),
+                cached    = $parent.attr('data-fitcache-eheight'),
+                max       = 0;
+
+            if (!cached) {
+                $children.each(function () {
+                    max = Math.max(max, $(this).height());
+                });
+            } else {
+                max = cached;
+            }
+
+            $(this).height(max);
+            $parent.attr('data-fitcache-eheight', max);
+        });
     }
 
     function correctScale (transform, element) {
